@@ -1,5 +1,5 @@
 from datetime import datetime
-from sqlalchemy import String,ForeignKey,Double,JSON,DateTime,UniqueConstraint
+from sqlalchemy import String,ForeignKey,Double,JSON,DateTime,Integer,UniqueConstraint
 from sqlalchemy.orm import Mapped,mapped_column
 from src.config.database import Base
 class AssociationStudy(Base):
@@ -9,3 +9,4 @@ class AssociationStudy(Base):
  name:Mapped[str]=mapped_column(String(120))
  period:Mapped[str]=mapped_column(String(60))
  description:Mapped[str]=mapped_column(String(1600),default='')
+ revision:Mapped[int]=mapped_column(Integer,nullable=False,default=0,server_default='0')

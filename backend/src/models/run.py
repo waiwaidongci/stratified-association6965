@@ -1,5 +1,5 @@
 from datetime import datetime
-from sqlalchemy import String,ForeignKey,Double,JSON,DateTime,UniqueConstraint
+from sqlalchemy import String,ForeignKey,Double,JSON,DateTime,Integer,UniqueConstraint
 from sqlalchemy.orm import Mapped,mapped_column
 from src.config.database import Base
 class AssociationRun(Base):
@@ -7,6 +7,7 @@ class AssociationRun(Base):
  id:Mapped[int]=mapped_column(primary_key=True)
  name:Mapped[str]=mapped_column(String(160),unique=True)
  study_id:Mapped[int]=mapped_column(ForeignKey('association_studies.id'))
+ worksheet_revision:Mapped[int|None]=mapped_column(Integer,nullable=True,default=None)
  alpha:Mapped[float]=mapped_column(Double(asdecimal=False),default=.05)
  status:Mapped[str]=mapped_column(String(20),default='queued')
  input_snapshot:Mapped[dict]=mapped_column(JSON,default=dict)

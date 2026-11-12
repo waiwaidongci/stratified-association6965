@@ -1,5 +1,5 @@
 from datetime import datetime
-from sqlalchemy import String,ForeignKey,Double,JSON,DateTime,UniqueConstraint
+from sqlalchemy import String,ForeignKey,Double,JSON,DateTime,Integer,UniqueConstraint
 from sqlalchemy.orm import Mapped,mapped_column
 from src.config.database import Base
 class VerificationNote(Base):
@@ -7,6 +7,7 @@ class VerificationNote(Base):
  id:Mapped[int]=mapped_column(primary_key=True)
  title:Mapped[str]=mapped_column(String(160),unique=True)
  run_id:Mapped[int]=mapped_column(ForeignKey('association_runs.id'))
+ worksheet_revision:Mapped[int|None]=mapped_column(Integer,nullable=True,default=None)
  interpretation:Mapped[str]=mapped_column(String(2000))
  action:Mapped[str]=mapped_column(String(1200))
  status:Mapped[str]=mapped_column(String(20),default='draft')
